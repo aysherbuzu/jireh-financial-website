@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jireh Financial Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="50" r="0.5" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(238, 90, 36, 0.3);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #667eea;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 80px 0;
+        }
+
+        .content-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        /* Forms */
+        .form-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Page-specific styles */
+        .page-content {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* PDF viewer styles */
+        .pdf-container {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo" onclick="showPage('homepage')">Jireh Financial Solutions</a>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('homepage')">Home</a></li>
+                <li><a href="#" onclick="showPage('about-us')">About Us</a></li>
+                <li><a href="#" onclick="showPage('services')">Services</a></li>
+                <li><a href="#" onclick="showPage('investment')">Investment Advisory</a></li>
+                <li><a href="#" onclick="showPage('resources')">Resources</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Homepage -->
+    <div id="homepage" class="page active">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Your Financial Future Starts Here</h1>
+                    <p>Expert financial solutions tailored to your unique needs. Build wealth, secure your future, and achieve your financial goals with Jireh Financial Solutions.</p>
+                    <a href="#" class="cta-button" onclick="showPage('book-consultation')">Book Free Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="services">
+            <div class="container">
+                <h2 class="section-title">Our Key Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">💼</div>
+                        <h3>Wealth Management</h3>
+                        <p>Comprehensive wealth planning and management services to grow and protect your assets over time.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3>Investment Advisory</h3>
+                        <p>Expert investment guidance and portfolio management tailored to your risk tolerance and financial goals.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏠</div>
+                        <h3>Retirement Planning</h3>
+                        <p>Strategic retirement planning to ensure you can maintain your desired lifestyle in your golden years.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">What Our Clients Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <p>"Jireh Financial Solutions transformed our financial outlook. Their personalized approach helped us achieve goals we never thought possible."</p>
+                        <strong>- Sarah & Michael Johnson</strong>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Professional, knowledgeable, and always available. They've been instrumental in securing our family's financial future."</p>
+                        <strong>- David Chen</strong>
+                    </div>
+                    <div class="testimonial">
+                        <p>"The investment strategies they provided have consistently outperformed our expectations. Highly recommended!"</p>
+                        <strong>- Lisa Rodriguez</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about-us" class="page hidden">
+        <div class="page-content">
+            <div class="container">
+                <div class="two-column">
+                    <div>
+                        <h1>About Jireh Financial Solutions</h1>
+                        <h2>Our Mission</h2>
+                        <p>At Jireh Financial Solutions, we believe that everyone deserves access to professional financial guidance. Our mission is to empower individuals and families to achieve their financial dreams through personalized, ethical, and comprehensive financial planning services.</p>
+                        
+                        <h2>Company History</h2>
+                        <p>Founded in 2015, Jireh Financial Solutions has grown from a small advisory firm to a trusted financial partner for hundreds of families across the region. Our commitment to integrity, transparency, and client-first service has been the cornerstone of our success.</p>
+                        
+                        <h2>Our Values</h2>
+                        <ul>
+                            <li>Integrity in all our dealings</li>
+                            <li>Personalized service for every client</li>
+                            <li>Transparency in fees and processes</li>
+                            <li>Continuous education and improvement</li>
+                            <li>Long-term relationship building</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div style="border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                            <img src="https://s44783.pcdn.co/in/wp-content/uploads/sites/3/2022/03/What-is-Financial-Management-768x512.jpg.optimal.jpg" 
+                                 alt="Financial Management Team" 
+                                 style="width: 100%; height: 400px; object-fit: cover; display: block;">
+                        </div>
+                        <div style="text-align: center; margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                            Our experienced team of financial professionals
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page hidden">
+        <div class="page-content">
+            <div class="container">
+                <h1 class="section-title">Our Services</h1>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">💰</div>
+                        <h3>Financial Planning</h3>
+                        <p>Comprehensive financial planning services including budgeting, debt management, and goal setting to help you achieve financial stability and growth.</p>
+                        <ul>
+                            <li>Personal budgeting strategies</li>
+                            <li>Debt consolidation planning</li>
+                            <li>Emergency fund establishment</li>
+                            <li>Financial goal setting</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📈</div>
+                        <h3>Investment Management</h3>
+                        <p>Professional investment management services designed to grow your wealth while managing risk according to your personal financial situation.</p>
+                        <ul>
+                            <li>Portfolio diversification</li>
+                            <li>Risk assessment</li>
+                            <li>Market analysis</li>
+                            <li>Performance monitoring</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏦</div>
+                        <h3>Retirement Planning</h3>
+                        <p>Strategic retirement planning to ensure you can maintain your desired lifestyle throughout your retirement years.</p>
+                        <ul>
+                            <li>401(k) optimization</li>
+                            <li>IRA management</li>
+                            <li>Social Security planning</li>
+                            <li>Pension planning</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🛡️</div>
+                        <h3>Insurance Planning</h3>
+                        <p>Comprehensive insurance analysis to protect your family and assets from unexpected events and financial hardships.</p>
+                        <ul>
+                            <li>Life insurance</li>
+                            <li>Disability insurance</li>
+                            <li>Long-term care insurance</li>
+                            <li>Property protection</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎓</div>
+                        <h3>Education Planning</h3>
+                        <p>Strategic planning for education expenses including college savings plans and educational investment strategies.</p>
+                        <ul>
+                            <li>529 college savings plans</li>
+                            <li>Education savings accounts</li>
+                            <li>Financial aid planning</li>
+                            <li>Student loan strategies</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💎</div>
+                        <h3>Estate Planning</h3>
+                        <p>Comprehensive estate planning services to ensure your assets are distributed according to your wishes and tax implications are minimized.</p>
+                        <ul>
+                            <li>Will and trust creation</li>
+                            <li>Tax optimization</li>
+                            <li>Beneficiary planning</li>
+                            <li>Asset protection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Investment Advisory Page -->
+    <div id="investment" class="page hidden">
+        <div class="page-content">
+            <div class="container">
+                <h1 class="section-title">Investment Advisory Services</h1>
+                <div class="two-column">
+                    <div>
+                        <h2>Professional Investment Management</h2>
+                        <p>Our investment advisory services are designed to help you build and preserve wealth through strategic investment planning and professional portfolio management. We take a personalized approach to understand your unique financial situation, risk tolerance, and investment objectives.</p>
+                        
+                        <h3>Our Investment Philosophy</h3>
+                        <ul>
+                            <li>Long-term wealth building strategies</li>
+                            <li>Diversified portfolio construction</li>
+                            <li>Risk-adjusted returns</li>
+                            <li>Regular portfolio rebalancing</li>
+                            <li>Tax-efficient investing</li>
+                        </ul>
+
+                        <h3>Investment Services Include:</h3>
+                        <ul>
+                            <li>Initial portfolio assessment and analysis</li>
+                            <li>Custom investment strategy development</li>
+                            <li>Asset allocation optimization</li>
+                            <li>Ongoing portfolio monitoring and management</li>
+                            <li>Regular performance reporting and reviews</li>
+                            <li>Tax-loss harvesting strategies</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="service-card">
+                            <h3>Investment Process</h3>
+                            <ol>
+                                <li><strong>Discovery:</strong> We learn about your financial goals, timeline, and risk tolerance</li>
+                                <li><strong>Analysis:</strong> We analyze your current portfolio and financial situation</li>
+                                <li><strong>Strategy:</strong> We develop a customized investment strategy</li>
+                                <li><strong>Implementation:</strong> We execute the investment plan</li>
+                                <li><strong>Monitoring:</strong> We continuously monitor and adjust as needed</li>
+                                <li><strong>Reporting:</strong> Regular updates on performance and market conditions</li>
+                            </ol>
+                        </div>
+
+                        <div class="service-card" style="margin-top: 2rem;">
+                            <h3>Asset Classes We Cover</h3>
+                            <ul>
+                                <li>Domestic and International Stocks</li>
+                                <li>Corporate and Government Bonds</li>
+                                <li>Real Estate Investment Trusts (REITs)</li>
+                                <li>Commodities and Alternative Investments</li>
+                                <li>Exchange-Traded Funds (ETFs)</li>
+                                <li>Mutual Funds</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resources Page -->
+    <div id="resources" class="page hidden">
+        <div class="page-content">
+            <div class="container">
+                <h1 class="section-title">Financial Resources & Guides</h1>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">📚</div>
+                        <h3>Financial Education Articles</h3>
+                        <p>Stay informed with our comprehensive library of financial articles covering everything from basic budgeting to advanced investment strategies.</p>
+                        <ul>
+                            <li>Personal Finance Basics</li>
+                            <li>Investment Fundamentals</li>
+                            <li>Retirement Planning Tips</li>
+                            <li>Tax Planning Strategies</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3>Financial Calculators</h3>
+                        <p>Use our interactive calculators to help plan your financial future and make informed decisions about your money.</p>
+                        <ul>
+                            <li>Retirement Calculator</li>
+                            <li>Loan Payment Calculator</li>
+                            <li>Investment Growth Calculator</li>
+                            <li>Budget Planning Tool</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">📋</div>
+                        <h3>Planning Worksheets</h3>
+                        <p>Download our free financial planning worksheets to help organize your finances and track your progress toward your goals.</p>
+                        <ul>
+                            <li>Budget Planning Worksheet</li>
+                            <li>Net Worth Calculator</li>
+                            <li>Goal Setting Template</li>
+                            <li>Investment Tracking Sheet</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">📖</div>
+                        <h3>Your Guide to Budgeting</h3>
+                        <p>Our comprehensive budgeting guide helps you take control of your finances with practical tips and strategies.</p>
+                        <a href="#" onclick="showBudgetingGuide()" style="display: inline-block; margin-top: 1rem; padding: 8px 16px; background: #667eea; color: white; text-decoration: none; border-radius: 5px;">View PDF Guide</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">📈</div>
+                        <h3>Market Updates</h3>
+                        <p>Stay current with regular market commentary and economic updates that may impact your investment portfolio.</p>
+                        <ul>
+                            <li>Monthly Market Reports</li>
+                            <li>Economic Outlook</li>
+                            <li>Sector Analysis</li>
+                            <li>Investment Insights</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3>Financial Checklists</h3>
+                        <p>Step-by-step checklists to help you navigate important financial milestones and life events.</p>
+                        <ul>
+                            <li>New Graduate Financial Checklist</li>
+                            <li>New Parent Financial Planning</li>
+                            <li>Pre-Retirement Checklist</li>
+                            <li>Estate Planning Checklist</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Budgeting Guide PDF Viewer -->
+    <div id="budgeting-guide" class="page hidden">
+        <div class="page-content">
+            <div class="container">
+                <h1>Your Guide to Budgeting</h1>
+                <p><a href="#" onclick="showPage('resources')">&larr; Back to Resources</a></p>
+                <div class="pdf-container">
+                    <div style="text-align: center; padding: 2rem;">
+                        <div class="service-icon" style="margin: 0 auto 1rem; background: #667eea;">📖</div>
+                        <h3>Budgeting Guide PDF</h3>
+                        <p>This comprehensive guide covers budgeting fundamentals, expense tracking, savings strategies, and debt management techniques.</p>
+                        <p style="margin-top: 1rem; color: #666;"><em>PDF viewer would be embedded here in a production environment</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page hidden">
+        <div class="page-content">
+            <div class="container">
+                <h1 class="section-title">Contact Us</h1>
+                <div class="two-column">
+                    <div>
+                        <h2>Get in Touch</h2>
+                        <p>We're here to help you achieve your financial goals. Contact us today to schedule a consultation or learn more about our services.</p>
+                        
+                        <div style="margin: 2rem 0;">
+                            <h3>Office Information</h3>
+                            <p><strong>Address:</strong><br>
+                            123 Financial District<br>
+                            Suite 500<br>
+                            Your City, State 12345</p>
+                            
+                            <p><strong>Phone:</strong> (555) 123-4567<br>
+                            <strong>Email:</strong> info@jirehfinancial.com</p>
+                            
+                            <p><strong>Office Hours:</strong><br>
+                            Monday - Friday: 8:00 AM - 6:00 PM<br>
+                            Saturday: 9:00 AM - 2:00 PM<br>
+                            Sunday: Closed</p>
+                        </div>
+                        
+                        <a href="#" class="cta-button" onclick="showPage('book-consultation')">Book Consultation</a>
+                    </div>
+                    
+                    <div>
+                        <div class="form-container" style="background: #f8f9fa;">
+                            <h3>Send us a Message</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">Full Name</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <select id="subject" name="subject">
+                                        <option value="">Select a topic</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="investment">Investment Advisory</option>
+                                        <option value="planning">Financial Planning</option>
+                                        <option value="retirement">Retirement Planning</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" rows="5" placeholder="Tell us about your financial goals and how we can help..."></textarea>
+                                </div>
+                                <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Consultation Form -->
+    <div id="book-consultation" class="page hidden">
+        <div class="form-section">
+            <div class="container">
+                <h1 class="section-title">Book Your Free Consultation</h1>
+                <p style="text-align: center; margin-bottom: 3rem; font-size: 1.2rem;">Take the first step toward achieving your financial goals. Schedule your complimentary consultation today.</p>
+                
+                <div class="form-container">
+                    <form>
+                        <div class="form-group">
+                            <label for="consultation-name">Full Name</label>
+                            <input type="text" id="consultation-name" name="name" required>
+                        </div>
+                        
+                        
+                            <div class="form-group">
+                                <label for="consultation-time">Preferred Time</label>
+                                <select id="consultation-time" name="time" required>
+                                    <option value="">Select time</option>
+                                    <option value="9:00 AM">9:00 AM</option>
+                                    <option value="10:00 AM">10:00 AM</option>
+                                    <option value="11:00 AM">11:00 AM</option>
+                                    <option value="1:00 PM">1:00 PM</option>
+                                    <option value="2:00 PM">2:00 PM</option>
+                                    <option value="3:00 PM">3:00 PM</option>
+                                    <option value="4:00 PM">4:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="meeting-preference">Meeting Preference</label>
+                            <select id="meeting-preference" name="meeting-preference" required>
+                                <option value="">Select preference</option>
+                                <option value="in-person">In-Person Meeting</option>
+                                <option value="video-call">Video Call</option>
+                                <option value="phone-call">Phone Call</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="financial-goals">What are your primary financial goals? (Optional)</label>
+                            <textarea id="financial-goals" name="goals" rows="3" placeholder="e.g., retirement planning, debt reduction, investment growth..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="additional-info">Additional Information (Optional)</label>
+                            <textarea id="additional-info" name="additional-info" rows="3" placeholder="Any specific questions or concerns you'd like to discuss..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cta-button" style="width: 100%; font-size: 1.1rem; padding: 15px;">Book My Free Consultation</button>
+                        
+                        <p style="margin-top: 1rem; text-align: center; font-size: 0.9rem; color: #666;">
+                            By submitting this form, you agree to be contacted by Jireh Financial Solutions regarding your consultation request.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Legal/Policy Page -->
+    <div id="legal-policy" class="page hidden">
+        <div class="page-content">
+            <div class="container">
+                <h1>Legal Information & Terms of Trade</h1>
+                
+                <div style="background: #f8f9fa; padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <h2>Terms of Service</h2>
+                    <p><strong>Last Updated:</strong> January 2025</p>
+                </div>
+
+                <div style="max-width: 800px;">
+                    <h3>1. Introduction</h3>
+                    <p>Welcome to Jireh Financial Solutions ("we," "our," or "us"). These Terms of Service govern your use of our website and services. By accessing our website or engaging our services, you agree to be bound by these terms.</p>
+
+                    <h3>2. Our Services</h3>
+                    <p>Jireh Financial Solutions provides financial planning, investment advisory, retirement planning, and related financial services. Our services are subject to applicable securities laws and regulations.</p>
+
+                    <h3>3. Investment Disclaimer</h3>
+                    <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem; margin: 1rem 0;">
+                        <p><strong>Important:</strong> All investments involve risk, including the potential loss of principal. Past performance does not guarantee future results. Investment advisory services are provided only to clients with whom we have entered into written advisory agreements.</p>
+                    </div>
+
+                    <h3>4. Fiduciary Responsibility</h3>
+                    <p>As a registered investment advisor, we act in a fiduciary capacity for our advisory clients. This means we are legally required to act in your best interest and provide advice that is suitable for your financial situation.</p>
+
+                    <h3>5. Privacy Policy</h3>
+                    <p>We are committed to protecting your privacy and maintaining the confidentiality of your personal and financial information. We collect, use, and share information in accordance with applicable privacy laws and regulations.</p>
+
+                    <h3>6. Data Protection</h3>
+                    <ul>
+                        <li>Personal information is encrypted and stored securely</li>
+                        <li>We do not sell personal information to third parties</li>
+                        <li>Information is shared only as necessary to provide services</li>
+                        <li>You have the right to request access to your personal data</li>
+                    </ul>
+
+                    <h3>7. Regulatory Compliance</h3>
+                    <p>Jireh Financial Solutions is registered with [State Securities Commission/SEC] and complies with all applicable federal and state securities laws and regulations.</p>
+
+                    <h3>8. Fee Structure</h3>
+                    <p>Our fees are clearly disclosed in our Form ADV and client agreements. Fees may include:</p>
+                    <ul>
+                        <li>Asset-based management fees</li>
+                        <li>Hourly planning fees</li>
+                        <li>Project-based fees</li>
+                        <li>Retainer fees</li>
+                    </ul>
+
+                    <h3>9. Client Responsibilities</h3>
+                    <p>Clients are responsible for:</p>
+                    <ul>
+                        <li>Providing accurate and complete financial information</li>
+                        <li>Notifying us of changes in financial circumstances</li>
+                        <li>Reading and understanding all agreements and disclosures</li>
+                        <li>Making their own investment decisions based on our recommendations</li>
+                    </ul>
+
+                    <h3>10. Limitation of Liability</h3>
+                    <p>Our liability is limited as set forth in our client agreements. We are not liable for losses resulting from market conditions, economic factors, or other circumstances beyond our control.</p>
+
+                    <h3>11. Dispute Resolution</h3>
+                    <p>Any disputes arising from our services will be resolved through binding arbitration in accordance with the rules of [Arbitration Organization].</p>
+
+                    <h3>12. Contact Information</h3>
+                    <p>If you have questions about these terms or our services, please contact us at:</p>
+                    <p>
+                        Jireh Financial Solutions<br>
+                        Email: legal@jirehfinancial.com<br>
+                        Phone: (555) 123-4567
+                    </p>
+
+                    <div style="background: #e7f3ff; border-left: 4px solid #2196f3; padding: 1rem; margin: 2rem 0;">
+                        <p><strong>Note:</strong> This is a simplified version of our terms for demonstration purposes. Actual terms of service would be more comprehensive and reviewed by legal counsel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>Jireh Financial Solutions</h3>
+                    <p>Your trusted partner in financial planning and wealth management.</p>
+                    <p>&copy; 2025 Jireh Financial Solutions. All rights reserved.</p>
+                </div>
+                <div>
+                    <h4>Services</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="#" onclick="showPage('services')" style="color: #bbb; text-decoration: none;">Financial Planning</a></li>
+                        <li><a href="#" onclick="showPage('investment')" style="color: #bbb; text-decoration: none;">Investment Advisory</a></li>
+                        <li><a href="#" onclick="showPage('services')" style="color: #bbb; text-decoration: none;">Retirement Planning</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Resources</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="#" onclick="showPage('resources')" style="color: #bbb; text-decoration: none;">Financial Guides</a></li>
+                        <li><a href="#" onclick="showBudgetingGuide()" style="color: #bbb; text-decoration: none;">Budgeting Guide</a></li>
+                        <li><a href="#" onclick="showPage('resources')" style="color: #bbb; text-decoration: none;">Calculators</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p>123 Financial District<br>Suite 500<br>Your City, State 12345</p>
+                    <p>Phone: (555) 123-4567<br>Email: info@jirehfinancial.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+                page.classList.add('hidden');
+            });
+            
+            // Show the selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.remove('hidden');
+                selectedPage.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function showBudgetingGuide() {
+            showPage('budgeting-guide');
+        }
+
+        // Add smooth scrolling and interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to service cards
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add interactive navigation highlighting
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Remove active class from all nav links
+                    navLinks.forEach(l => l.classList.remove('nav-active'));
+                    // Add active class to clicked link
+                    this.classList.add('nav-active');
+                });
+            });
+
+            // Form submission handlers
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show success message
+                    const formContainer = this.parentElement;
+                    const successMessage = document.createElement('div');
+                    successMessage.style.cssText = `
+                        background: #d4edda;
+                        border: 1px solid #c3e6cb;
+                        border-radius: 8px;
+                        padding: 1rem;
+                        margin-top: 1rem;
+                        color: #155724;
+                        text-align: center;
+                    `;
+                    successMessage.innerHTML = '<strong>Thank you!</strong> We\'ve received your message and will contact you within 24 hours.';
+                    
+                    // Remove any existing success messages
+                    const existingSuccess = formContainer.querySelector('[data-success]');
+                    if (existingSuccess) {
+                        existingSuccess.remove();
+                    }
+                    
+                    successMessage.setAttribute('data-success', 'true');
+                    formContainer.appendChild(successMessage);
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 5000);
+                });
+            });
+
+            // Add loading animation to CTA buttons
+            const ctaButtons = document.querySelectorAll('.cta-button');
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.getAttribute('onclick')) {
+                        return; // Let the onclick handler take care of navigation
+                    }
+                    
+                    // Add loading state for form submissions
+                    if (this.type === 'submit') {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = 'Processing...';
+                        this.style.opacity = '0.7';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.opacity = '1';
+                        }, 2000);
+                    }
+                });
+            });
+
+            // Add parallax effect to hero section
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    const rate = scrolled * -0.5;
+                    hero.style.transform = `translateY(${rate}px)`;
+                }
+            });
+
+            // Add animation on scroll for service cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all service cards for animation
+            const animatedElements = document.querySelectorAll('.service-card, .testimonial');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+
+    <style>
+        /* Additional interactive styles */
+        .nav-active {
+            background: rgba(255,255,255,0.2) !important;
+            border-radius: 5px;
+        }
+
+        .service-card {
+            transition: all 0.3s ease !important;
+        }
+
+        /* Mobile menu toggle (basic implementation) */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: linear-gradient(135deg, #1e3c72, #2a5298);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 1rem 2rem;
+                width: 200px;
+                text-align: center;
+            }
+
+            /* Add mobile menu button */
+            .mobile-menu-btn {
+                display: block;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 0.5rem;
+            }
+
+            .mobile-menu-btn:hover {
+                background: rgba(255,255,255,0.1);
+                border-radius: 5px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* Enhanced button hover effects */
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover:before {
+            left: 100%;
+        }
